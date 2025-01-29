@@ -12,19 +12,19 @@ public class PostService {
     @Autowired
     PostRepository postRepository;
 
-    List<Post> getAllPosts(){
+    public List<Post> getAllPosts(){
         return postRepository.findAll();
     }
 
-    Post getPostById(Long id){
+    public Post getPostById(Long id){
         return postRepository.findById(id).orElseThrow(()-> new RuntimeException("Post not found!"));
     }
     
-    Post cratePost(Post post){
+    public Post cratePost(Post post){
        return postRepository.save(post);
     }
     
-    Post updatePost(Post post, Long id){
+    public Post updatePost(Post post, Long id){
         Post updatedPost = getPostById(id);
         updatedPost.setTitle(post.getTitle());
         updatedPost.setExcerpt(post.getExcerpt());
@@ -33,11 +33,11 @@ public class PostService {
         return postRepository.save(updatedPost);
     }
     
-    void deletePostById(Long id){
+    public void deletePostById(Long id){
         postRepository.deleteById(id);
     }
 
-    void deleteAllPosts(){
+    public void deleteAllPosts(){
         postRepository.deleteAll();
     }
 }

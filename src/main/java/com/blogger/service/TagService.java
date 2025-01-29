@@ -12,31 +12,31 @@ import java.util.List;
 public class TagService {
 
     @Autowired
-    TagRepository tagRepository;
+    private TagRepository tagRepository;
 
-    List<Tag> getAll(){
+   public List<Tag> getAllPosts(){
         return tagRepository.findAll();
     }
 
-    Tag getTagById(Long id){
+   public Tag getTagById(Long id){
         return tagRepository.findById(id).orElseThrow(()-> new RuntimeException("Tag not found!"));
     }
 
-    Tag createTag(Tag tag){
+   public Tag createTag(Tag tag){
         return tagRepository.save(tag);
     }
 
-    Tag updateTag(Tag tag, Long id){
+   public Tag updateTag(Tag tag, Long id){
         Tag udatedTag = getTagById(id);
         udatedTag.setName(tag.getName());
         return tagRepository.save(tag);
     }
 
-    void deleteTagById(Long id){
+   public void deleteTagById(Long id){
         tagRepository.deleteById(id);
     }
 
-    void deleteAllTags(){
+   public void deleteAllTags(){
         tagRepository.deleteAll();
     }
 }

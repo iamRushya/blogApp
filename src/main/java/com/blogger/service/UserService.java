@@ -14,19 +14,19 @@ public class UserService {
     UserRepository userRepository;
 
 
-    List<User> getAllUsers(){
+   public List<User> getAllUsers(){
         return userRepository.findAll();
     }
 
-    User getUserById(Long id){
+    public User getUserById(Long id){
         return userRepository.findById(id).orElseThrow(()-> new RuntimeException("User not found!"));
     }
 
-    User createUser(User user){
+    public User createUser(User user){
         return userRepository.save(user);
     }
 
-    User updateUser(Long id, User user){
+    public User updateUser(Long id, User user){
         User updatedUser = getUserById(id);
         updatedUser.setName(user.getName());
         updatedUser.setEmail(user.getEmail());
@@ -35,11 +35,11 @@ public class UserService {
         return userRepository.save(updatedUser);
     }
 
-    void deleteUserById(Long id){
+    public void deleteUserById(Long id){
         userRepository.deleteById(id);
     }
 
-    void deleteAllUsers(){
+    public void deleteAllUsers(){
         userRepository.deleteAll();
     }
 }
